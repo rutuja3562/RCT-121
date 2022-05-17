@@ -1,6 +1,5 @@
 // import { ContactList } from "./components/ContactList";
 import { useState } from "react";
-
 import AddContact from "./AddContact";
 import ContactCard from "./ContactCard";
 const initState = [
