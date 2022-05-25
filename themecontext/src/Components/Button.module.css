@@ -1,0 +1,18 @@
+.buttonbase{
+  padding:20px 40px;
+  color:white;
+}
+.buttonlight{
+  background: grey;
+}
+.buttondark{
+  background: #000;
+}
+.light{
+    background: white;
+    color:black
+}
+.dark{
+    background: #000;
+    color:white
+}
