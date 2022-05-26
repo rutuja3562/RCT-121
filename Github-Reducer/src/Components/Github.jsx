@@ -48,7 +48,7 @@ useEffect(()=>{
   })
   axios({
     method: "get",
-    url: " https://api.github.com/search/users",
+    // url: " https://api.github.com/search/users",
     params:{
       q:"masai"
     }
