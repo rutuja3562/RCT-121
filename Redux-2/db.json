@@ -1,0 +1,44 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "title": "Learn React",
+      "status": false
+    },
+    {
+      "id": 2,
+      "title": "Learn Typescript",
+      "status": false
+    },
+    {
+      "title": "learn Redux",
+      "status": false,
+      "id": 3
+    },
+    {
+      "title": "learn Redux",
+      "status": false,
+      "id": 4
+    },
+    {
+      "title": "Learn React Redux",
+      "status": false,
+      "id": 5
+    },
+    {
+      "title": "Learn Node js",
+      "status": false,
+      "id": 6
+    },
+    {
+      "title": "Learn Express",
+      "status": false,
+      "id": 7
+    },
+    {
+      "title": "Revision",
+      "status": false,
+      "id": 8
+    }
+  ]
+}
