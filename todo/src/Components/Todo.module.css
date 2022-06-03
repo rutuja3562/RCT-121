@@ -1,0 +1,23 @@
+.todolist {
+  align-items: center;
+  text-align: center;
+  margin: "auto";
+  /* border: 1px solid black; */
+  margin-top: 1rem;
+}
+.tododiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10;
+  margin: auto;
+  border: 1px solid black;
+  width: 45%;
+}
+.button {
+  border: none;
+  background-color: black;
+  color: white;
+  padding: "7px 18px";
+  outline: none;
+}

@@ -10,9 +10,14 @@ export const todoActions = {
   ADD_TODOS_SUCCESS: "ADD_TODOS_SUCCESS",
   ADD_TODOS_FAILURE: "ADD_TODOS_FAILURE",
   /*Update Todo*/
-//   UPDATE_TODOS_REQUEST: "UPDATE_TODOS_REQUEST",
-//   UPDATE_TODOS_SUCCESS: "UPDATE_TODOS_SUCCESS",
-//   UPDATE_TODOS_FAILURE: "UPDATE_TODOS_FAILURE",
+  //   UPDATE_TODOS_REQUEST: "UPDATE_TODOS_REQUEST",
+  //   UPDATE_TODOS_SUCCESS: "UPDATE_TODOS_SUCCESS",
+  //   UPDATE_TODOS_FAILURE: "UPDATE_TODOS_FAILURE",
+
+  /*Delete Todo*/
+  DELETE_TODOS_REQUEST: "DELETE_TODOS_REQUEST",
+  DELETE_TODOS_SUCCESS: "DELETE_TODOS_SUCCESS",
+  DELETE_TODOS_FAILURE: "DELETE_TODOS_FAILURE",
 };
 
 export const getTodoRequest = () => {
@@ -21,10 +26,10 @@ export const getTodoRequest = () => {
     type: todoActions.GET_TODOS_REQUEST,
   };
 };
-export const getTodoSuccess = (payload) => {
+export const getTodoSuccess = (data) => {
   return {
     type: todoActions.GET_TODOS_SUCCESS,
-    payload,
+    payload: data,
   };
 };
 export const getTodoFailure = () => {
@@ -34,10 +39,9 @@ export const getTodoFailure = () => {
 };
 
 export const getTodos = (dispatch) => {
-       console.log("==dispatch==", dispatch);
   const todoRequestAction = getTodoRequest();
   dispatch(todoRequestAction);
-  axios({
+  return axios({
     method: "GET",
     url: "http://localhost:8080/todos",
   })
@@ -51,17 +55,17 @@ export const getTodos = (dispatch) => {
     });
 };
 
- /*Add Todo*/
+/*Add Todo*/
 
 export const addTodoRequest = () => {
   return {
     type: todoActions.ADD_TODOS_REQUEST,
   };
 };
-export const addTodoSuccess = (payload) => {
+export const addTodoSuccess = (data) => {
   return {
     type: todoActions.ADD_TODOS_SUCCESS,
-    payload,
+    payload: data,
   };
 };
 export const addTodoFailure = () => {
@@ -70,16 +74,16 @@ export const addTodoFailure = () => {
   };
 };
 
-export const addTodos = ({title,dispatch}) => {
+export const addTodos = ({ dispatch }) => {
   const todoRequestAction = addTodoRequest();
   dispatch(todoRequestAction);
-  axios({
+ return axios({
     method: "POST",
     url: "http://localhost:8080/todos",
-    data:{
-        title,
-        status:false
-    }
+    data: {
+      title,
+      status: false,
+    },
   })
     .then((res) => {
       const todoSuccessAction = addTodoSuccess();
@@ -91,7 +95,7 @@ export const addTodos = ({title,dispatch}) => {
     });
 };
 
- /*Update Todo*/
+/*Update Todo*/
 
 //  export const updateTodoRequest = () => {
 //    return {
@@ -111,7 +115,7 @@ export const addTodos = ({title,dispatch}) => {
 //  };
 
 //  export const updateTodos = ( dispatch ) => {
-  
+
 //    const todoRequestAction = updateTodoRequest();
 //    dispatch(todoRequestAction);
 //    axios({
@@ -131,3 +135,44 @@ export const addTodos = ({title,dispatch}) => {
 //        dispatch(todoFailureAction);
 //      });
 //  };
+
+
+ export const deleteTodoRequest = () => {
+   return {
+     type: todoActions.DELETE_TODOS_REQUEST,
+   };
+ };
+ export const deleteTodoSuccess = (id) => {
+   return {
+     type: todoActions.DELETE_TODOS_SUCCESS,
+    id
+   };
+ };
+ export const deleteTodoFailure = () => {
+   return {
+     type: todoActions.DELETE_TODOS_FAILURE,
+   };
+ };
+
+ export const deleteTodos = ({id,dispatch} ) => {
+console.log("id",id)
+   const todoRequestAction = deleteTodoRequest();
+   dispatch(todoRequestAction);
+   axios({
+     method: "",
+     url: `http://localhost:8080/todos/${id}`,
+     data: {
+       id,
+       status: false,
+     },
+   })
+     .then((res) => {
+       const todoSuccessAction = deleteTodoSuccess();
+       dispatch(todoSuccessAction);
+     })
+     .catch((error) => {
+       const todoFailureAction = deleteTodoFailure();
+       dispatch(todoFailureAction);
+     });
+ };
+

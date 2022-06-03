@@ -1,10 +1,10 @@
-import { combineReducers, legacy_createStore as createStore } from "redux";
-import { reducer } from "./reducer";
-const rootreducer = combineReducers({
-  reducer,
-});
-export const store = createStore(
-  rootreducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
-console.log(store.getState())
+import { applyMiddleware, combineReducers, legacy_createStore as  createStore } from "redux";
+import { todoReducer } from "./reducer";
+import thunk from "redux-thunk";
+const rootReducer = combineReducers({
+  todos : todoReducer
+})
+
+export const store = createStore(rootReducer,
+  applyMiddleware(thunk))
+console.log("state",store.getState())

@@ -1,32 +1,75 @@
-import { getActions } from "./action";
-// import { appActions } from "./action";
-const initState = { loading: false, todos: [], err: false };
-export const reducer = (state = initState, action) => {
+import { todoActions } from "./action"
+
+const initState={
+  todos:[],
+  loading:true,
+  error:false,
+}
+
+ export const todoReducer =(state=initState,action)=>{
   switch (action.type) {
-    case getActions.GET_TODOS_REQUEST: {
+    case todoActions.GET_TODOS_REQUEST: {
       return {
         ...state,
         loading: true,
-        err: false,
+        error: false,
       };
     }
-    case getActions.GET_TODOS_SUCCESS: {
+    case todoActions.GET_TODOS_SUCCESS: {
       return {
         ...state,
         loading: false,
-        todos:action.payload
+        todos: action.payload,
       };
-    
     }
-
-    case getActions.GET_TODOS_FAILURE: {
+    case todoActions.GET_TODOS_FAILURE: {
+      return {
+        ...state,
+        error: true,
+        loading: false,
+      };
+    }
+    case todoActions.ADD_TODOS_REQUEST: {
+      return {
+        ...state,
+        loading: true,
+        error: false,
+      };
+    }
+    case todoActions.ADD_TODOS_SUCCESS: {
       return {
         ...state,
         loading: false,
-        err: true,
+      };
+    }
+    case todoActions.ADD_TODOS_FAILURE: {
+      return {
+        ...state,
+        error: true,
+        loading: false,
+      };
+    }
+    case todoActions.DELETE_TODOS_REQUEST: {
+      return {
+        ...state,
+        loading: true,
+        error: false,
+      };
+    }
+    case todoActions.DELETE_TODOS_SUCCESS: {
+      return {
+        ...state,
+        loading: false,
+      };
+    }
+    case todoActions.DELETE_TODOS_FAILURE: {
+      return {
+        ...state,
+        error: true,
+        loading: false,
       };
     }
     default:
       return state;
   }
-};
+}
