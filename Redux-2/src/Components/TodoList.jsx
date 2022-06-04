@@ -6,11 +6,10 @@ export const TodoList = () => {
   const todos = useSelector((state) => state.todoReducer.todos);
   const loading = useSelector((state) => state.todoReducer.loading);
   const dispatch = useDispatch();
-  // console.log("todos", todos);
+  console.log("todos", todos);
   const deleteTodo = (id) => {
-    deleteTodos({
-      id,
-      dispatch,
+    dispatch(deleteTodos({ id })).then(() => {
+      getTodos(dispatch);
     });
   };
   return (

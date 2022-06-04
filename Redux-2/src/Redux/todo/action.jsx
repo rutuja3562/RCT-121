@@ -74,7 +74,7 @@ export const addTodoFailure = () => {
   };
 };
 
-export const addTodos = ({ dispatch }) => {
+export const addTodos = ({ title,dispatch }) => {
   const todoRequestAction = addTodoRequest();
   dispatch(todoRequestAction);
  return axios({
@@ -142,10 +142,10 @@ export const addTodos = ({ dispatch }) => {
      type: todoActions.DELETE_TODOS_REQUEST,
    };
  };
- export const deleteTodoSuccess = (id) => {
+ export const deleteTodoSuccess = () => {
    return {
      type: todoActions.DELETE_TODOS_SUCCESS,
-    id
+   
    };
  };
  export const deleteTodoFailure = () => {
@@ -154,25 +154,24 @@ export const addTodos = ({ dispatch }) => {
    };
  };
 
- export const deleteTodos = ({id,dispatch} ) => {
-console.log("id",id)
+ export const deleteTodos = ({id} )=>(dispatch) => {
+
    const todoRequestAction = deleteTodoRequest();
    dispatch(todoRequestAction);
-   axios({
-     method: "",
+   return axios({
+     method: "delete",
      url: `http://localhost:8080/todos/${id}`,
-     data: {
-       id,
-       status: false,
-     },
+  
    })
-     .then((res) => {
-       const todoSuccessAction = deleteTodoSuccess();
-       dispatch(todoSuccessAction);
-     })
-     .catch((error) => {
-       const todoFailureAction = deleteTodoFailure();
-       dispatch(todoFailureAction);
-     });
+    // return axios
+    //   .delete(`http://localhost:8080/todos/${id}`)
+      .then((res) => {
+        const todoSuccessAction = deleteTodoSuccess();
+        dispatch(todoSuccessAction);
+      })
+      .catch((error) => {
+        const todoFailureAction = deleteTodoFailure();
+        dispatch(todoFailureAction);
+      });
  };
 
