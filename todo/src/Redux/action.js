@@ -23,7 +23,7 @@ export const todoActions = {
   UPDATE_TODOS_FAILURE: "UPDATE_TODOS_FAILURE",
 };
 
- // Get Todos
+// Get Todos
 
 export const getTodoRequest = () => {
   return {
@@ -81,17 +81,17 @@ export const addTodoFailure = () => {
   };
 };
 
-export const addTodos = ({title}) =>{
+export const addTodos = ({ title }) => {
   return function (dispatch) {
     const todoRequestAction = addTodoRequest();
     dispatch(todoRequestAction);
     return axios({
       url: "http://localhost:8080/todos",
       method: "POST",
-      data:{
-      title,
-        statue:false,
-      }
+      data: {
+        title,
+        statue: false,
+      },
     })
       .then((res) => {
         console.log(res.data);
@@ -105,9 +105,7 @@ export const addTodos = ({title}) =>{
   };
 };
 
-
 // Delete Todo
-
 
 export const deleteTodoRequest = () => {
   return {
@@ -117,7 +115,6 @@ export const deleteTodoRequest = () => {
 export const deleteTodoSuccess = () => {
   return {
     type: todoActions.DELETE_TODOS_SUCCESS,
-   
   };
 };
 export const deleteTodoFailure = () => {
@@ -126,11 +123,12 @@ export const deleteTodoFailure = () => {
   };
 };
 
-export const deleteTodos = ({id}) => {
+export const deleteTodos = ({ id }) => {
   return function (dispatch) {
     const todoRequestAction = deleteTodoRequest();
     dispatch(todoRequestAction);
-    return axios.delete(`http://localhost:8080/todos/${id}`)
+    return axios
+      .delete(`http://localhost:8080/todos/${id}`)
       .then((res) => {
         // console.log(res.data);
         const todoSuccessAction = deleteTodoSuccess();

@@ -2,8 +2,8 @@ import { todoActions } from "./action";
 
 const initState = {
   loading: false,
-  todos:  [],
   error: false,
+  todos:  [],
 };
 export const todoReducer = (state = initState, action) => {
   switch (action.type) {
